@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Divider</title>
+
+    <style>
+        html {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            background:url(payment-background-design_1212-511.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+           
+        }
+
+        fieldset {
+            border: 3px solid red;
+            background: rgba(0, 0, 0, 0.54);
+            border-radius: 20px;
+            text-align: center;
+            /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+            margin: 5% 25%;
+            color: white;
+            /* display: none; */
+        }
+
+        input,
+        select {
+            border-radius: 3.5px;
+        }
+
+        h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 2.2rem;
+        }
+
+        .clr {
+            height: 40px;
+        }
+
+        h3 {
+            font-weight: lighter;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.2rem;
+        }
+
+        button {
+            margin: 20px;
+            border-radius: 8px;
+            height: 50px;
+            width: 100px;
+            color: white;
+            background: lightcoral;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        button:hover {
+            background: crimson;
+        }
+
+        .pop {
+            background: rgba(0, 0, 0, 0.34);
+            border: 3px solid red;
+            text-align: center;
+            border-radius: 20px;
+            margin: 5% 30%;
+            color: white;
+        }
+        h4{
+            text-align: center;
+            font-weight: bold;
+            font-family:sans-serif;
+            font-size: 1rem;
+            
+        }
+        @media(max-width:503px){
+        fieldset,.pop{
+            margin: 5% 15%;
+        }
+        }
+        @media(max-width:435px){
+        h1{
+            font-size: 1.5rem;
+        }
+        h3{
+            font-size: 1rem;
+        }
+        }
+        @media(max-width:303px){
+        fieldset,.pop{
+            margin: 0% 0%;
+        }
+        }
+        @media(max-width:221px){
+        fieldset,.pop{
+           padding: 0%;
+        }
+        h3{
+            font-size: 0.8rem;
+        }
+        }
+
+    </style>
+</head>
+
+<body id="bdy">
+    <div class="form-type" id="view1">
+        <fieldset>
+            <div class="clr">
+                <h1>Bill Splitter</h1>
+            </div>
+            <hr>
+            <label>
+                <h3>How much you pay? :</h3><br>
+                <input id="apaid" placeholder="Enter amount in Rs."></input>
+            </label><br>
+            <label>
+                <h3>How is your Experience? :</h3><br>
+                <select name="experience" id="exp">
+                    <option disabled selected value="0">--Rate Here--</option>
+                    <option value="excillent">Excillent</option>
+                    <option value="good">Good</option>
+                    <option value="Bad">Bad</option>
+                </select>
+            </label>
+            <label>
+                <h3>How many people share this bill? :</h3><br>
+                <input id="person" placeholder="Number of person"></input>
+            </label><br>
+            <label><button class="btn" id="bt">CALCULATE!</button></label>
+        </fieldset>
+    </div>
+
+    <div class="pop" id="pop">
+        <h1>OK!</h1><hr>
+        <h3>The Total Amount to paid: <span id="i5"></span></h3>
+        <h3>The Food Quality You rated: <span id="i2"></span></h3>
+        <h3>The bill splitted between: <span id="i3"></span> Persons.</h3>
+        <h3>The splitted bill is: Rs.<span id="i4"></span> each.</h3>
+        <button class="btn" id="abtn">Calculate Again!</button>
+    </div>
+   
+    <div class="coder"><h4>coded by aayush</h4></div>
+
+    <script>
+        document.getElementById('pop').style.display = 'none';
+
+        function bill() {
+            console.log('yeah');
+
+            let experience = document.getElementById('exp').value;
+            let person = document.getElementById('person').value;
+            let apaid = document.getElementById('apaid').value;
+
+            if (apaid <= 0 || person <= 0) { alert("Go and Eat something"); }
+            if (person == 1) { alert("Doing party alone :)"); }
+
+            var total = apaid / person;
+            total = total.toFixed(2);
+
+            let i5 = document.getElementById('i5');
+            i5.innerText = apaid;
+
+            let i2 = document.getElementById('i2');
+            i2.innerText = experience;
+
+            let i3 = document.getElementById('i3');
+            i3.innerText = person;
+
+            let i4 = document.getElementById('i4');
+            i4.innerText = total;
+
+
+            document.getElementById('pop').style.display = 'block';
+            document.getElementById('view1').style.display = 'none';
+
+        }
+
+        document.getElementById('bt').onclick = function () {
+            bill();
+        };
+
+
+        function dis() {
+            document.getElementById('pop').style.display = 'none';
+            document.getElementById('view1').style.display = 'block';
+        }
+
+        document.getElementById('abtn').onclick = function () {
+            dis();
+        };
+    </script>
+</body>
+
+</html>
